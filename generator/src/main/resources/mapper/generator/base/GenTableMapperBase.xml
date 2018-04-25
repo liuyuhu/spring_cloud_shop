@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.generator.dao.GenTableDao">
+
+	<resultMap id="BaseResultMap" type="com.github.generator.entity.GenTable">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="comments" property="comments" />
+		<result column="class_name" property="className" />
+		<result column="extend_base" property="extendBase" />
+		<result column="parent_table" property="parentTable" />
+		<result column="parent_table_fk" property="parentTableFk" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="valid" property="valid" />
+  	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		name,
+		comments,
+		class_name,
+		extend_base,
+		parent_table,
+		parent_table_fk,
+		create_time,
+		update_time,
+		valid
+	</sql>
+
+	<select id="get" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM gen_table
+		WHERE id = #{id}
+	</select>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM gen_table
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<sql id="WHERE_BASE">
+		<where>
+			<choose>
+				<when test="valid != null">
+					t.valid = #{valid}
+				</when>
+				<otherwise>
+					t.valid = 1
+				</otherwise>
+			</choose>
+			<if test="id != null and id != ''">
+				AND t.id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				AND t.name LIKE
+					concat('%',#{name},'%')
+			</if>
+			<if test="comments != null and comments != ''">
+				AND t.comments = #{comments}
+			</if>
+			<if test="className != null and className != ''">
+				AND t.class_name = #{className}
+			</if>
+			<if test="extendBase != null and extendBase != ''">
+				AND t.extend_base = #{extendBase}
+			</if>
+			<if test="parentTable != null and parentTable != ''">
+				AND t.parent_table = #{parentTable}
+			</if>
+			<if test="parentTableFk != null and parentTableFk != ''">
+				AND t.parent_table_fk = #{parentTableFk}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM gen_table t
+		<include refid="WHERE_BASE" />
+		ORDER BY t.create_time ASC
+	</select>
+
+	<select id="listPage" resultMap="BaseResultMap" parameterType="Page">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM gen_table t
+		<where>
+			<choose>
+				<when test="condition != null">
+					<choose>
+						<when test="condition.valid != null">
+							t.valid = #{condition.valid}
+						</when>
+						<otherwise>
+							t.valid = 1
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+					t.valid = 1
+				</otherwise>
+			</choose>
+			<if test="condition != null">
+			<if test="condition.id != null and condition.id != ''">
+				AND t.id = #{condition.id}
+			</if>
+			<if test="condition.name != null and condition.name != ''">
+				AND t.name LIKE
+					concat('%',#{condition.name},'%')
+			</if>
+			<if test="condition.comments != null and condition.comments != ''">
+				AND t.comments = #{condition.comments}
+			</if>
+			<if test="condition.className != null and condition.className != ''">
+				AND t.class_name = #{condition.className}
+			</if>
+			<if test="condition.extendBase != null and condition.extendBase != ''">
+				AND t.extend_base = #{condition.extendBase}
+			</if>
+			<if test="condition.parentTable != null and condition.parentTable != ''">
+				AND t.parent_table = #{condition.parentTable}
+			</if>
+			<if test="condition.parentTableFk != null and condition.parentTableFk != ''">
+				AND t.parent_table_fk = #{condition.parentTableFk}
+			</if>
+			</if>
+		</where>
+		<choose>
+			<when test="orderBy != null and orderBy != ''">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY t.create_time ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="save">
+		INSERT INTO gen_table
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">
+				id,
+			</if>
+			<if test="name != null and name != ''">
+				name,
+			</if>
+			<if test="comments != null and comments != ''">
+				comments,
+			</if>
+			<if test="className != null and className != ''">
+				class_name,
+			</if>
+			<if test="extendBase != null and extendBase != ''">
+				extend_base,
+			</if>
+			<if test="parentTable != null and parentTable != ''">
+				parent_table,
+			</if>
+			<if test="parentTableFk != null and parentTableFk != ''">
+				parent_table_fk,
+			</if>
+			<if test="createTime != null ">
+				create_time,
+			</if>
+			<if test="updateTime != null ">
+				update_time,
+			</if>
+			<if test="valid != null">
+				valid,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">
+				#{id},
+			</if>
+			<if test="name != null and name != ''">
+				#{name},
+			</if>
+			<if test="comments != null and comments != ''">
+				#{comments},
+			</if>
+			<if test="className != null and className != ''">
+				#{className},
+			</if>
+			<if test="extendBase != null and extendBase != ''">
+				#{extendBase},
+			</if>
+			<if test="parentTable != null and parentTable != ''">
+				#{parentTable},
+			</if>
+			<if test="parentTableFk != null and parentTableFk != ''">
+				#{parentTableFk},
+			</if>
+			<if test="createTime != null ">
+				#{createTime},
+			</if>
+			<if test="updateTime != null ">
+				#{updateTime},
+			</if>
+			<if test="valid != null">
+				#{valid},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update">
+		UPDATE gen_table
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="comments != null and comments != ''">
+				comments = #{comments},
+			</if>
+			<if test="className != null and className != ''">
+				class_name = #{className},
+			</if>
+			<if test="extendBase != null and extendBase != ''">
+				extend_base = #{extendBase},
+			</if>
+			<if test="parentTable != null and parentTable != ''">
+				parent_table = #{parentTable},
+			</if>
+			<if test="parentTableFk != null and parentTableFk != ''">
+				parent_table_fk = #{parentTableFk},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="valid != null">
+				valid = #{valid},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<update id="updateAll">
+		UPDATE gen_table
+		<set>
+			name = #{name},
+			comments = #{comments},
+			class_name = #{className},
+			extend_base = #{extendBase},
+			parent_table = #{parentTable},
+			parent_table_fk = #{parentTableFk},
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			valid = #{valid},
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Boolean">
+	<choose>
+		<when test="logic">
+			UPDATE gen_table
+			SET valid = "0"
+			WHERE id = #{id}
+		</when>
+		<otherwise>
+			DELETE FROM gen_table
+			WHERE id = #{id}
+		</otherwise>
+	</choose>
+	</delete>
+
+</mapper>

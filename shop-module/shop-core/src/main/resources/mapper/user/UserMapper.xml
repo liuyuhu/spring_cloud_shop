@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diaojuku.shop.user.dao.UserDao">
+
+    <resultMap id="ResultMap" type="com.diaojuku.shop.user.entity.User">
+		<id column="user_id" property="userId" />
+		<result column="aite_id" property="aiteId" />
+		<result column="email" property="email" />
+		<result column="user_name" property="userName" />
+		<result column="password" property="password" />
+		<result column="is_surplus_open" property="isSurplusOpen" />
+		<result column="surplus_password" property="surplusPassword" />
+		<result column="question" property="question" />
+		<result column="answer" property="answer" />
+		<result column="sex" property="sex" />
+		<result column="birthday" property="birthday" />
+		<result column="user_money" property="userMoney" />
+		<result column="frozen_money" property="frozenMoney" />
+		<result column="pay_points" property="payPoints" />
+		<result column="rank_points" property="rankPoints" />
+		<result column="address_id" property="addressId" />
+		<result column="reg_time" property="regTime" />
+		<result column="last_login" property="lastLogin" />
+		<result column="last_time" property="lastTime" />
+		<result column="last_ip" property="lastIp" />
+		<result column="visit_count" property="visitCount" />
+		<result column="user_rank" property="userRank" />
+		<result column="is_special" property="isSpecial" />
+		<result column="ec_salt" property="ecSalt" />
+		<result column="salt" property="salt" />
+		<result column="parent_id" property="parentId" />
+		<result column="flag" property="flag" />
+		<result column="alias" property="alias" />
+		<result column="msn" property="msn" />
+		<result column="qq" property="qq" />
+		<result column="office_phone" property="officePhone" />
+		<result column="home_phone" property="homePhone" />
+		<result column="mobile_phone" property="mobilePhone" />
+		<result column="is_validated" property="isValidated" />
+		<result column="validated" property="validated" />
+		<result column="credit_line" property="creditLine" />
+		<result column="passwd_question" property="passwdQuestion" />
+		<result column="passwd_answer" property="passwdAnswer" />
+		<result column="passwd_weixin" property="passwdWeixin" />
+		<result column="is_fenxiao" property="isFenxiao" />
+		<result column="real_name" property="realName" />
+		<result column="card" property="card" />
+		<result column="face_card" property="faceCard" />
+		<result column="back_card" property="backCard" />
+		<result column="country" property="country" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="district" property="district" />
+		<result column="address" property="address" />
+		<result column="status" property="status" />
+		<result column="mediaUID" property="mediauid" />
+		<result column="mediaID" property="mediaid" />
+		<result column="froms" property="froms" />
+		<result column="headimg" property="headimg" />
+  	</resultMap>
+
+	<sql id="Column_List">
+		user_id,
+		aite_id,
+		email,
+		user_name,
+		password,
+		is_surplus_open,
+		surplus_password,
+		question,
+		answer,
+		sex,
+		birthday,
+		user_money,
+		frozen_money,
+		pay_points,
+		rank_points,
+		address_id,
+		reg_time,
+		last_login,
+		last_time,
+		last_ip,
+		visit_count,
+		user_rank,
+		is_special,
+		ec_salt,
+		salt,
+		parent_id,
+		flag,
+		alias,
+		msn,
+		qq,
+		office_phone,
+		home_phone,
+		mobile_phone,
+		is_validated,
+		validated,
+		credit_line,
+		passwd_question,
+		passwd_answer,
+		passwd_weixin,
+		is_fenxiao,
+		real_name,
+		card,
+		face_card,
+		back_card,
+		country,
+		province,
+		city,
+		district,
+		address,
+		status,
+		mediaUID,
+		mediaID,
+		froms,
+		headimg
+	</sql>
+	
+	<sql id="Column_List_T">
+		t.user_id,
+		t.aite_id,
+		t.email,
+		t.user_name,
+		t.password,
+		t.is_surplus_open,
+		t.surplus_password,
+		t.question,
+		t.answer,
+		t.sex,
+		t.birthday,
+		t.user_money,
+		t.frozen_money,
+		t.pay_points,
+		t.rank_points,
+		t.address_id,
+		t.reg_time,
+		t.last_login,
+		t.last_time,
+		t.last_ip,
+		t.visit_count,
+		t.user_rank,
+		t.is_special,
+		t.ec_salt,
+		t.salt,
+		t.parent_id,
+		t.flag,
+		t.alias,
+		t.msn,
+		t.qq,
+		t.office_phone,
+		t.home_phone,
+		t.mobile_phone,
+		t.is_validated,
+		t.validated,
+		t.credit_line,
+		t.passwd_question,
+		t.passwd_answer,
+		t.passwd_weixin,
+		t.is_fenxiao,
+		t.real_name,
+		t.card,
+		t.face_card,
+		t.back_card,
+		t.country,
+		t.province,
+		t.city,
+		t.district,
+		t.address,
+		t.status,
+		t.mediaUID,
+		t.mediaID,
+		t.froms,
+		t.headimg
+	</sql>
+
+</mapper>

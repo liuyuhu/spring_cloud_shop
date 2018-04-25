@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diaojuku.shop.user.dao.SupplierDao">
+
+    <resultMap id="ResultMap" type="com.diaojuku.shop.user.entity.Supplier">
+		<id column="supplier_id" property="supplierId" />
+		<result column="user_id" property="userId" />
+		<result column="supplier_name" property="supplierName" />
+		<result column="rank_id" property="rankId" />
+		<result column="type_id" property="typeId" />
+		<result column="company_name" property="companyName" />
+		<result column="country" property="country" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="district" property="district" />
+		<result column="address" property="address" />
+		<result column="tel" property="tel" />
+		<result column="email" property="email" />
+		<result column="guimo" property="guimo" />
+		<result column="company_type" property="companyType" />
+		<result column="bank" property="bank" />
+		<result column="zhizhao" property="zhizhao" />
+		<result column="contact" property="contact" />
+		<result column="id_card" property="idCard" />
+		<result column="contact_back" property="contactBack" />
+		<result column="contact_shop" property="contactShop" />
+		<result column="contact_yunying" property="contactYunying" />
+		<result column="contact_shouhou" property="contactShouhou" />
+		<result column="contact_caiwu" property="contactCaiwu" />
+		<result column="contact_jishu" property="contactJishu" />
+		<result column="system_fee" property="systemFee" />
+		<result column="supplier_bond" property="supplierBond" />
+		<result column="supplier_rebate" property="supplierRebate" />
+		<result column="supplier_rebate_paytime" property="supplierRebatePaytime" />
+		<result column="supplier_remark" property="supplierRemark" />
+		<result column="nav_list" property="navList" />
+		<result column="status" property="status" />
+		<result column="add_time" property="addTime" />
+		<result column="applynum" property="applynum" />
+		<result column="contacts_name" property="contactsName" />
+		<result column="contacts_phone" property="contactsPhone" />
+		<result column="business_licence_number" property="businessLicenceNumber" />
+		<result column="business_sphere" property="businessSphere" />
+		<result column="organization_code" property="organizationCode" />
+		<result column="organization_code_electronic" property="organizationCodeElectronic" />
+		<result column="general_taxpayer" property="generalTaxpayer" />
+		<result column="bank_account_name" property="bankAccountName" />
+		<result column="bank_account_number" property="bankAccountNumber" />
+		<result column="bank_name" property="bankName" />
+		<result column="bank_code" property="bankCode" />
+		<result column="settlement_bank_account_name" property="settlementBankAccountName" />
+		<result column="settlement_bank_account_number" property="settlementBankAccountNumber" />
+		<result column="settlement_bank_name" property="settlementBankName" />
+		<result column="settlement_bank_code" property="settlementBankCode" />
+		<result column="tax_registration_certificate" property="taxRegistrationCertificate" />
+		<result column="taxpayer_id" property="taxpayerId" />
+		<result column="bank_licence_electronic" property="bankLicenceElectronic" />
+		<result column="tax_registration_certificate_electronic" property="taxRegistrationCertificateElectronic" />
+		<result column="supplier_money" property="supplierMoney" />
+		<result column="handheld_idcard" property="handheldIdcard" />
+		<result column="idcard_front" property="idcardFront" />
+		<result column="idcard_reverse" property="idcardReverse" />
+		<result column="id_card_no" property="idCardNo" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude" property="longitude" />
+		<result column="wechat_qr_code" property="wechatQrCode" />
+		<result column="shop_photo" property="shopPhoto" />
+		<result column="type" property="type" />
+  	</resultMap>
+
+	<sql id="Column_List">
+		supplier_id,
+		user_id,
+		supplier_name,
+		rank_id,
+		type_id,
+		company_name,
+		country,
+		province,
+		city,
+		district,
+		address,
+		tel,
+		email,
+		guimo,
+		company_type,
+		bank,
+		zhizhao,
+		contact,
+		id_card,
+		contact_back,
+		contact_shop,
+		contact_yunying,
+		contact_shouhou,
+		contact_caiwu,
+		contact_jishu,
+		system_fee,
+		supplier_bond,
+		supplier_rebate,
+		supplier_rebate_paytime,
+		supplier_remark,
+		nav_list,
+		status,
+		add_time,
+		applynum,
+		contacts_name,
+		contacts_phone,
+		business_licence_number,
+		business_sphere,
+		organization_code,
+		organization_code_electronic,
+		general_taxpayer,
+		bank_account_name,
+		bank_account_number,
+		bank_name,
+		bank_code,
+		settlement_bank_account_name,
+		settlement_bank_account_number,
+		settlement_bank_name,
+		settlement_bank_code,
+		tax_registration_certificate,
+		taxpayer_id,
+		bank_licence_electronic,
+		tax_registration_certificate_electronic,
+		supplier_money,
+		handheld_idcard,
+		idcard_front,
+		idcard_reverse,
+		id_card_no,
+		latitude,
+		longitude,
+		wechat_qr_code,
+		shop_photo,
+		type
+	</sql>
+	
+	<sql id="Column_List_T">
+		t.supplier_id,
+		t.user_id,
+		t.supplier_name,
+		t.rank_id,
+		t.type_id,
+		t.company_name,
+		t.country,
+		t.province,
+		t.city,
+		t.district,
+		t.address,
+		t.tel,
+		t.email,
+		t.guimo,
+		t.company_type,
+		t.bank,
+		t.zhizhao,
+		t.contact,
+		t.id_card,
+		t.contact_back,
+		t.contact_shop,
+		t.contact_yunying,
+		t.contact_shouhou,
+		t.contact_caiwu,
+		t.contact_jishu,
+		t.system_fee,
+		t.supplier_bond,
+		t.supplier_rebate,
+		t.supplier_rebate_paytime,
+		t.supplier_remark,
+		t.nav_list,
+		t.status,
+		t.add_time,
+		t.applynum,
+		t.contacts_name,
+		t.contacts_phone,
+		t.business_licence_number,
+		t.business_sphere,
+		t.organization_code,
+		t.organization_code_electronic,
+		t.general_taxpayer,
+		t.bank_account_name,
+		t.bank_account_number,
+		t.bank_name,
+		t.bank_code,
+		t.settlement_bank_account_name,
+		t.settlement_bank_account_number,
+		t.settlement_bank_name,
+		t.settlement_bank_code,
+		t.tax_registration_certificate,
+		t.taxpayer_id,
+		t.bank_licence_electronic,
+		t.tax_registration_certificate_electronic,
+		t.supplier_money,
+		t.handheld_idcard,
+		t.idcard_front,
+		t.idcard_reverse,
+		t.id_card_no,
+		t.latitude,
+		t.longitude,
+		t.wechat_qr_code,
+		t.shop_photo,
+		t.type
+	</sql>
+
+</mapper>

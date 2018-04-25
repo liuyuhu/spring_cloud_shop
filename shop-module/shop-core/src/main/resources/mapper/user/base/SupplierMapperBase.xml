@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diaojuku.shop.user.dao.SupplierDao">
+
+	<resultMap id="BaseResultMap" type="com.diaojuku.shop.user.entity.Supplier">
+		<id column="supplier_id" property="supplierId" />
+		<result column="user_id" property="userId" />
+		<result column="supplier_name" property="supplierName" />
+		<result column="rank_id" property="rankId" />
+		<result column="type_id" property="typeId" />
+		<result column="company_name" property="companyName" />
+		<result column="country" property="country" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="district" property="district" />
+		<result column="address" property="address" />
+		<result column="tel" property="tel" />
+		<result column="email" property="email" />
+		<result column="guimo" property="guimo" />
+		<result column="company_type" property="companyType" />
+		<result column="bank" property="bank" />
+		<result column="zhizhao" property="zhizhao" />
+		<result column="contact" property="contact" />
+		<result column="id_card" property="idCard" />
+		<result column="contact_back" property="contactBack" />
+		<result column="contact_shop" property="contactShop" />
+		<result column="contact_yunying" property="contactYunying" />
+		<result column="contact_shouhou" property="contactShouhou" />
+		<result column="contact_caiwu" property="contactCaiwu" />
+		<result column="contact_jishu" property="contactJishu" />
+		<result column="system_fee" property="systemFee" />
+		<result column="supplier_bond" property="supplierBond" />
+		<result column="supplier_rebate" property="supplierRebate" />
+		<result column="supplier_rebate_paytime" property="supplierRebatePaytime" />
+		<result column="supplier_remark" property="supplierRemark" />
+		<result column="nav_list" property="navList" />
+		<result column="status" property="status" />
+		<result column="add_time" property="addTime" />
+		<result column="applynum" property="applynum" />
+		<result column="contacts_name" property="contactsName" />
+		<result column="contacts_phone" property="contactsPhone" />
+		<result column="business_licence_number" property="businessLicenceNumber" />
+		<result column="business_sphere" property="businessSphere" />
+		<result column="organization_code" property="organizationCode" />
+		<result column="organization_code_electronic" property="organizationCodeElectronic" />
+		<result column="general_taxpayer" property="generalTaxpayer" />
+		<result column="bank_account_name" property="bankAccountName" />
+		<result column="bank_account_number" property="bankAccountNumber" />
+		<result column="bank_name" property="bankName" />
+		<result column="bank_code" property="bankCode" />
+		<result column="settlement_bank_account_name" property="settlementBankAccountName" />
+		<result column="settlement_bank_account_number" property="settlementBankAccountNumber" />
+		<result column="settlement_bank_name" property="settlementBankName" />
+		<result column="settlement_bank_code" property="settlementBankCode" />
+		<result column="tax_registration_certificate" property="taxRegistrationCertificate" />
+		<result column="taxpayer_id" property="taxpayerId" />
+		<result column="bank_licence_electronic" property="bankLicenceElectronic" />
+		<result column="tax_registration_certificate_electronic" property="taxRegistrationCertificateElectronic" />
+		<result column="supplier_money" property="supplierMoney" />
+		<result column="handheld_idcard" property="handheldIdcard" />
+		<result column="idcard_front" property="idcardFront" />
+		<result column="idcard_reverse" property="idcardReverse" />
+		<result column="id_card_no" property="idCardNo" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude" property="longitude" />
+		<result column="wechat_qr_code" property="wechatQrCode" />
+		<result column="shop_photo" property="shopPhoto" />
+		<result column="type" property="type" />
+  	</resultMap>
+
+	<sql id="Base_Column_List">
+		supplier_id,
+		user_id,
+		supplier_name,
+		rank_id,
+		type_id,
+		company_name,
+		country,
+		province,
+		city,
+		district,
+		address,
+		tel,
+		email,
+		guimo,
+		company_type,
+		bank,
+		zhizhao,
+		contact,
+		id_card,
+		contact_back,
+		contact_shop,
+		contact_yunying,
+		contact_shouhou,
+		contact_caiwu,
+		contact_jishu,
+		system_fee,
+		supplier_bond,
+		supplier_rebate,
+		supplier_rebate_paytime,
+		supplier_remark,
+		nav_list,
+		status,
+		add_time,
+		applynum,
+		contacts_name,
+		contacts_phone,
+		business_licence_number,
+		business_sphere,
+		organization_code,
+		organization_code_electronic,
+		general_taxpayer,
+		bank_account_name,
+		bank_account_number,
+		bank_name,
+		bank_code,
+		settlement_bank_account_name,
+		settlement_bank_account_number,
+		settlement_bank_name,
+		settlement_bank_code,
+		tax_registration_certificate,
+		taxpayer_id,
+		bank_licence_electronic,
+		tax_registration_certificate_electronic,
+		supplier_money,
+		handheld_idcard,
+		idcard_front,
+		idcard_reverse,
+		id_card_no,
+		latitude,
+		longitude,
+		wechat_qr_code,
+		shop_photo,
+		type
+	</sql>
+
+	<select id="get" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM yzy_supplier
+		WHERE supplier_id = #{id}
+	</select>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM yzy_supplier
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<sql id="WHERE_BASE">
+		<where>
+			<if test="supplierId != null">
+				AND t.supplier_id = #{supplierId}
+			</if>
+			<if test="userId != null">
+				AND t.user_id = #{userId}
+			</if>
+			<if test="supplierName != null and supplierName != ''">
+				AND t.supplier_name = #{supplierName}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM yzy_supplier t
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<select id="listPage" resultMap="BaseResultMap" parameterType="Page">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM yzy_supplier t
+		<where>
+			<if test="condition != null">
+			<if test="condition.supplierId != null">
+				AND t.supplier_id = #{condition.supplierId}
+			</if>
+			<if test="condition.userId != null">
+				AND t.user_id = #{condition.userId}
+			</if>
+			<if test="condition.supplierName != null and condition.supplierName != ''">
+				AND t.supplier_name = #{condition.supplierName}
+			</if>
+			</if>
+		</where>
+		<choose>
+			<when test="orderBy != null and orderBy != ''">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="save" useGeneratedKeys="true" keyProperty="supplier_id">
+		INSERT INTO yzy_supplier
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="supplierId != null">
+				supplier_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="supplierName != null and supplierName != ''">
+				supplier_name,
+			</if>
+			<if test="rankId != null">
+				rank_id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="companyName != null and companyName != ''">
+				company_name,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
+			</if>
+			<if test="address != null and address != ''">
+				address,
+			</if>
+			<if test="tel != null and tel != ''">
+				tel,
+			</if>
+			<if test="email != null and email != ''">
+				email,
+			</if>
+			<if test="guimo != null and guimo != ''">
+				guimo,
+			</if>
+			<if test="companyType != null and companyType != ''">
+				company_type,
+			</if>
+			<if test="bank != null and bank != ''">
+				bank,
+			</if>
+			<if test="zhizhao != null and zhizhao != ''">
+				zhizhao,
+			</if>
+			<if test="contact != null and contact != ''">
+				contact,
+			</if>
+			<if test="idCard != null and idCard != ''">
+				id_card,
+			</if>
+			<if test="contactBack != null and contactBack != ''">
+				contact_back,
+			</if>
+			<if test="contactShop != null and contactShop != ''">
+				contact_shop,
+			</if>
+			<if test="contactYunying != null and contactYunying != ''">
+				contact_yunying,
+			</if>
+			<if test="contactShouhou != null and contactShouhou != ''">
+				contact_shouhou,
+			</if>
+			<if test="contactCaiwu != null and contactCaiwu != ''">
+				contact_caiwu,
+			</if>
+			<if test="contactJishu != null and contactJishu != ''">
+				contact_jishu,
+			</if>
+			<if test="systemFee != null">
+				system_fee,
+			</if>
+			<if test="supplierBond != null">
+				supplier_bond,
+			</if>
+			<if test="supplierRebate != null">
+				supplier_rebate,
+			</if>
+			<if test="supplierRebatePaytime != null">
+				supplier_rebate_paytime,
+			</if>
+			<if test="supplierRemark != null and supplierRemark != ''">
+				supplier_remark,
+			</if>
+			<if test="navList != null and navList != ''">
+				nav_list,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="applynum != null">
+				applynum,
+			</if>
+			<if test="contactsName != null and contactsName != ''">
+				contacts_name,
+			</if>
+			<if test="contactsPhone != null and contactsPhone != ''">
+				contacts_phone,
+			</if>
+			<if test="businessLicenceNumber != null and businessLicenceNumber != ''">
+				business_licence_number,
+			</if>
+			<if test="businessSphere != null and businessSphere != ''">
+				business_sphere,
+			</if>
+			<if test="organizationCode != null and organizationCode != ''">
+				organization_code,
+			</if>
+			<if test="organizationCodeElectronic != null and organizationCodeElectronic != ''">
+				organization_code_electronic,
+			</if>
+			<if test="generalTaxpayer != null and generalTaxpayer != ''">
+				general_taxpayer,
+			</if>
+			<if test="bankAccountName != null and bankAccountName != ''">
+				bank_account_name,
+			</if>
+			<if test="bankAccountNumber != null and bankAccountNumber != ''">
+				bank_account_number,
+			</if>
+			<if test="bankName != null and bankName != ''">
+				bank_name,
+			</if>
+			<if test="bankCode != null and bankCode != ''">
+				bank_code,
+			</if>
+			<if test="settlementBankAccountName != null and settlementBankAccountName != ''">
+				settlement_bank_account_name,
+			</if>
+			<if test="settlementBankAccountNumber != null and settlementBankAccountNumber != ''">
+				settlement_bank_account_number,
+			</if>
+			<if test="settlementBankName != null and settlementBankName != ''">
+				settlement_bank_name,
+			</if>
+			<if test="settlementBankCode != null and settlementBankCode != ''">
+				settlement_bank_code,
+			</if>
+			<if test="taxRegistrationCertificate != null and taxRegistrationCertificate != ''">
+				tax_registration_certificate,
+			</if>
+			<if test="taxpayerId != null and taxpayerId != ''">
+				taxpayer_id,
+			</if>
+			<if test="bankLicenceElectronic != null and bankLicenceElectronic != ''">
+				bank_licence_electronic,
+			</if>
+			<if test="taxRegistrationCertificateElectronic != null and taxRegistrationCertificateElectronic != ''">
+				tax_registration_certificate_electronic,
+			</if>
+			<if test="supplierMoney != null">
+				supplier_money,
+			</if>
+			<if test="handheldIdcard != null and handheldIdcard != ''">
+				handheld_idcard,
+			</if>
+			<if test="idcardFront != null and idcardFront != ''">
+				idcard_front,
+			</if>
+			<if test="idcardReverse != null and idcardReverse != ''">
+				idcard_reverse,
+			</if>
+			<if test="idCardNo != null and idCardNo != ''">
+				id_card_no,
+			</if>
+			<if test="latitude != null and latitude != ''">
+				latitude,
+			</if>
+			<if test="longitude != null and longitude != ''">
+				longitude,
+			</if>
+			<if test="wechatQrCode != null and wechatQrCode != ''">
+				wechat_qr_code,
+			</if>
+			<if test="shopPhoto != null and shopPhoto != ''">
+				shop_photo,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="supplierId != null">
+				#{supplierId},
+			</if>
+			<if test="userId != null">
+				#{userId},
+			</if>
+			<if test="supplierName != null and supplierName != ''">
+				#{supplierName},
+			</if>
+			<if test="rankId != null">
+				#{rankId},
+			</if>
+			<if test="typeId != null">
+				#{typeId},
+			</if>
+			<if test="companyName != null and companyName != ''">
+				#{companyName},
+			</if>
+			<if test="country != null">
+				#{country},
+			</if>
+			<if test="province != null">
+				#{province},
+			</if>
+			<if test="city != null">
+				#{city},
+			</if>
+			<if test="district != null">
+				#{district},
+			</if>
+			<if test="address != null and address != ''">
+				#{address},
+			</if>
+			<if test="tel != null and tel != ''">
+				#{tel},
+			</if>
+			<if test="email != null and email != ''">
+				#{email},
+			</if>
+			<if test="guimo != null and guimo != ''">
+				#{guimo},
+			</if>
+			<if test="companyType != null and companyType != ''">
+				#{companyType},
+			</if>
+			<if test="bank != null and bank != ''">
+				#{bank},
+			</if>
+			<if test="zhizhao != null and zhizhao != ''">
+				#{zhizhao},
+			</if>
+			<if test="contact != null and contact != ''">
+				#{contact},
+			</if>
+			<if test="idCard != null and idCard != ''">
+				#{idCard},
+			</if>
+			<if test="contactBack != null and contactBack != ''">
+				#{contactBack},
+			</if>
+			<if test="contactShop != null and contactShop != ''">
+				#{contactShop},
+			</if>
+			<if test="contactYunying != null and contactYunying != ''">
+				#{contactYunying},
+			</if>
+			<if test="contactShouhou != null and contactShouhou != ''">
+				#{contactShouhou},
+			</if>
+			<if test="contactCaiwu != null and contactCaiwu != ''">
+				#{contactCaiwu},
+			</if>
+			<if test="contactJishu != null and contactJishu != ''">
+				#{contactJishu},
+			</if>
+			<if test="systemFee != null">
+				#{systemFee},
+			</if>
+			<if test="supplierBond != null">
+				#{supplierBond},
+			</if>
+			<if test="supplierRebate != null">
+				#{supplierRebate},
+			</if>
+			<if test="supplierRebatePaytime != null">
+				#{supplierRebatePaytime},
+			</if>
+			<if test="supplierRemark != null and supplierRemark != ''">
+				#{supplierRemark},
+			</if>
+			<if test="navList != null and navList != ''">
+				#{navList},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="addTime != null">
+				#{addTime},
+			</if>
+			<if test="applynum != null">
+				#{applynum},
+			</if>
+			<if test="contactsName != null and contactsName != ''">
+				#{contactsName},
+			</if>
+			<if test="contactsPhone != null and contactsPhone != ''">
+				#{contactsPhone},
+			</if>
+			<if test="businessLicenceNumber != null and businessLicenceNumber != ''">
+				#{businessLicenceNumber},
+			</if>
+			<if test="businessSphere != null and businessSphere != ''">
+				#{businessSphere},
+			</if>
+			<if test="organizationCode != null and organizationCode != ''">
+				#{organizationCode},
+			</if>
+			<if test="organizationCodeElectronic != null and organizationCodeElectronic != ''">
+				#{organizationCodeElectronic},
+			</if>
+			<if test="generalTaxpayer != null and generalTaxpayer != ''">
+				#{generalTaxpayer},
+			</if>
+			<if test="bankAccountName != null and bankAccountName != ''">
+				#{bankAccountName},
+			</if>
+			<if test="bankAccountNumber != null and bankAccountNumber != ''">
+				#{bankAccountNumber},
+			</if>
+			<if test="bankName != null and bankName != ''">
+				#{bankName},
+			</if>
+			<if test="bankCode != null and bankCode != ''">
+				#{bankCode},
+			</if>
+			<if test="settlementBankAccountName != null and settlementBankAccountName != ''">
+				#{settlementBankAccountName},
+			</if>
+			<if test="settlementBankAccountNumber != null and settlementBankAccountNumber != ''">
+				#{settlementBankAccountNumber},
+			</if>
+			<if test="settlementBankName != null and settlementBankName != ''">
+				#{settlementBankName},
+			</if>
+			<if test="settlementBankCode != null and settlementBankCode != ''">
+				#{settlementBankCode},
+			</if>
+			<if test="taxRegistrationCertificate != null and taxRegistrationCertificate != ''">
+				#{taxRegistrationCertificate},
+			</if>
+			<if test="taxpayerId != null and taxpayerId != ''">
+				#{taxpayerId},
+			</if>
+			<if test="bankLicenceElectronic != null and bankLicenceElectronic != ''">
+				#{bankLicenceElectronic},
+			</if>
+			<if test="taxRegistrationCertificateElectronic != null and taxRegistrationCertificateElectronic != ''">
+				#{taxRegistrationCertificateElectronic},
+			</if>
+			<if test="supplierMoney != null">
+				#{supplierMoney},
+			</if>
+			<if test="handheldIdcard != null and handheldIdcard != ''">
+				#{handheldIdcard},
+			</if>
+			<if test="idcardFront != null and idcardFront != ''">
+				#{idcardFront},
+			</if>
+			<if test="idcardReverse != null and idcardReverse != ''">
+				#{idcardReverse},
+			</if>
+			<if test="idCardNo != null and idCardNo != ''">
+				#{idCardNo},
+			</if>
+			<if test="latitude != null and latitude != ''">
+				#{latitude},
+			</if>
+			<if test="longitude != null and longitude != ''">
+				#{longitude},
+			</if>
+			<if test="wechatQrCode != null and wechatQrCode != ''">
+				#{wechatQrCode},
+			</if>
+			<if test="shopPhoto != null and shopPhoto != ''">
+				#{shopPhoto},
+			</if>
+			<if test="type != null">
+				#{type},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update">
+		UPDATE yzy_supplier
+		<set>
+			<if test="userId != null">
+				user_id = #{userId},
+			</if>
+			<if test="supplierName != null and supplierName != ''">
+				supplier_name = #{supplierName},
+			</if>
+			<if test="rankId != null">
+				rank_id = #{rankId},
+			</if>
+			<if test="typeId != null">
+				type_id = #{typeId},
+			</if>
+			<if test="companyName != null and companyName != ''">
+				company_name = #{companyName},
+			</if>
+			<if test="country != null">
+				country = #{country},
+			</if>
+			<if test="province != null">
+				province = #{province},
+			</if>
+			<if test="city != null">
+				city = #{city},
+			</if>
+			<if test="district != null">
+				district = #{district},
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="tel != null and tel != ''">
+				tel = #{tel},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+			<if test="guimo != null and guimo != ''">
+				guimo = #{guimo},
+			</if>
+			<if test="companyType != null and companyType != ''">
+				company_type = #{companyType},
+			</if>
+			<if test="bank != null and bank != ''">
+				bank = #{bank},
+			</if>
+			<if test="zhizhao != null and zhizhao != ''">
+				zhizhao = #{zhizhao},
+			</if>
+			<if test="contact != null and contact != ''">
+				contact = #{contact},
+			</if>
+			<if test="idCard != null and idCard != ''">
+				id_card = #{idCard},
+			</if>
+			<if test="contactBack != null and contactBack != ''">
+				contact_back = #{contactBack},
+			</if>
+			<if test="contactShop != null and contactShop != ''">
+				contact_shop = #{contactShop},
+			</if>
+			<if test="contactYunying != null and contactYunying != ''">
+				contact_yunying = #{contactYunying},
+			</if>
+			<if test="contactShouhou != null and contactShouhou != ''">
+				contact_shouhou = #{contactShouhou},
+			</if>
+			<if test="contactCaiwu != null and contactCaiwu != ''">
+				contact_caiwu = #{contactCaiwu},
+			</if>
+			<if test="contactJishu != null and contactJishu != ''">
+				contact_jishu = #{contactJishu},
+			</if>
+			<if test="systemFee != null">
+				system_fee = #{systemFee},
+			</if>
+			<if test="supplierBond != null">
+				supplier_bond = #{supplierBond},
+			</if>
+			<if test="supplierRebate != null">
+				supplier_rebate = #{supplierRebate},
+			</if>
+			<if test="supplierRebatePaytime != null">
+				supplier_rebate_paytime = #{supplierRebatePaytime},
+			</if>
+			<if test="supplierRemark != null and supplierRemark != ''">
+				supplier_remark = #{supplierRemark},
+			</if>
+			<if test="navList != null and navList != ''">
+				nav_list = #{navList},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime},
+			</if>
+			<if test="applynum != null">
+				applynum = #{applynum},
+			</if>
+			<if test="contactsName != null and contactsName != ''">
+				contacts_name = #{contactsName},
+			</if>
+			<if test="contactsPhone != null and contactsPhone != ''">
+				contacts_phone = #{contactsPhone},
+			</if>
+			<if test="businessLicenceNumber != null and businessLicenceNumber != ''">
+				business_licence_number = #{businessLicenceNumber},
+			</if>
+			<if test="businessSphere != null and businessSphere != ''">
+				business_sphere = #{businessSphere},
+			</if>
+			<if test="organizationCode != null and organizationCode != ''">
+				organization_code = #{organizationCode},
+			</if>
+			<if test="organizationCodeElectronic != null and organizationCodeElectronic != ''">
+				organization_code_electronic = #{organizationCodeElectronic},
+			</if>
+			<if test="generalTaxpayer != null and generalTaxpayer != ''">
+				general_taxpayer = #{generalTaxpayer},
+			</if>
+			<if test="bankAccountName != null and bankAccountName != ''">
+				bank_account_name = #{bankAccountName},
+			</if>
+			<if test="bankAccountNumber != null and bankAccountNumber != ''">
+				bank_account_number = #{bankAccountNumber},
+			</if>
+			<if test="bankName != null and bankName != ''">
+				bank_name = #{bankName},
+			</if>
+			<if test="bankCode != null and bankCode != ''">
+				bank_code = #{bankCode},
+			</if>
+			<if test="settlementBankAccountName != null and settlementBankAccountName != ''">
+				settlement_bank_account_name = #{settlementBankAccountName},
+			</if>
+			<if test="settlementBankAccountNumber != null and settlementBankAccountNumber != ''">
+				settlement_bank_account_number = #{settlementBankAccountNumber},
+			</if>
+			<if test="settlementBankName != null and settlementBankName != ''">
+				settlement_bank_name = #{settlementBankName},
+			</if>
+			<if test="settlementBankCode != null and settlementBankCode != ''">
+				settlement_bank_code = #{settlementBankCode},
+			</if>
+			<if test="taxRegistrationCertificate != null and taxRegistrationCertificate != ''">
+				tax_registration_certificate = #{taxRegistrationCertificate},
+			</if>
+			<if test="taxpayerId != null and taxpayerId != ''">
+				taxpayer_id = #{taxpayerId},
+			</if>
+			<if test="bankLicenceElectronic != null and bankLicenceElectronic != ''">
+				bank_licence_electronic = #{bankLicenceElectronic},
+			</if>
+			<if test="taxRegistrationCertificateElectronic != null and taxRegistrationCertificateElectronic != ''">
+				tax_registration_certificate_electronic = #{taxRegistrationCertificateElectronic},
+			</if>
+			<if test="supplierMoney != null">
+				supplier_money = #{supplierMoney},
+			</if>
+			<if test="handheldIdcard != null and handheldIdcard != ''">
+				handheld_idcard = #{handheldIdcard},
+			</if>
+			<if test="idcardFront != null and idcardFront != ''">
+				idcard_front = #{idcardFront},
+			</if>
+			<if test="idcardReverse != null and idcardReverse != ''">
+				idcard_reverse = #{idcardReverse},
+			</if>
+			<if test="idCardNo != null and idCardNo != ''">
+				id_card_no = #{idCardNo},
+			</if>
+			<if test="latitude != null and latitude != ''">
+				latitude = #{latitude},
+			</if>
+			<if test="longitude != null and longitude != ''">
+				longitude = #{longitude},
+			</if>
+			<if test="wechatQrCode != null and wechatQrCode != ''">
+				wechat_qr_code = #{wechatQrCode},
+			</if>
+			<if test="shopPhoto != null and shopPhoto != ''">
+				shop_photo = #{shopPhoto},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+		</set>
+		WHERE supplier_id = #{supplierId}
+	</update>
+
+	<update id="updateAll">
+		UPDATE yzy_supplier
+		<set>
+			user_id = #{userId},
+			supplier_name = #{supplierName},
+			rank_id = #{rankId},
+			type_id = #{typeId},
+			company_name = #{companyName},
+			country = #{country},
+			province = #{province},
+			city = #{city},
+			district = #{district},
+			address = #{address},
+			tel = #{tel},
+			email = #{email},
+			guimo = #{guimo},
+			company_type = #{companyType},
+			bank = #{bank},
+			zhizhao = #{zhizhao},
+			contact = #{contact},
+			id_card = #{idCard},
+			contact_back = #{contactBack},
+			contact_shop = #{contactShop},
+			contact_yunying = #{contactYunying},
+			contact_shouhou = #{contactShouhou},
+			contact_caiwu = #{contactCaiwu},
+			contact_jishu = #{contactJishu},
+			system_fee = #{systemFee},
+			supplier_bond = #{supplierBond},
+			supplier_rebate = #{supplierRebate},
+			supplier_rebate_paytime = #{supplierRebatePaytime},
+			supplier_remark = #{supplierRemark},
+			nav_list = #{navList},
+			status = #{status},
+			add_time = #{addTime},
+			applynum = #{applynum},
+			contacts_name = #{contactsName},
+			contacts_phone = #{contactsPhone},
+			business_licence_number = #{businessLicenceNumber},
+			business_sphere = #{businessSphere},
+			organization_code = #{organizationCode},
+			organization_code_electronic = #{organizationCodeElectronic},
+			general_taxpayer = #{generalTaxpayer},
+			bank_account_name = #{bankAccountName},
+			bank_account_number = #{bankAccountNumber},
+			bank_name = #{bankName},
+			bank_code = #{bankCode},
+			settlement_bank_account_name = #{settlementBankAccountName},
+			settlement_bank_account_number = #{settlementBankAccountNumber},
+			settlement_bank_name = #{settlementBankName},
+			settlement_bank_code = #{settlementBankCode},
+			tax_registration_certificate = #{taxRegistrationCertificate},
+			taxpayer_id = #{taxpayerId},
+			bank_licence_electronic = #{bankLicenceElectronic},
+			tax_registration_certificate_electronic = #{taxRegistrationCertificateElectronic},
+			supplier_money = #{supplierMoney},
+			handheld_idcard = #{handheldIdcard},
+			idcard_front = #{idcardFront},
+			idcard_reverse = #{idcardReverse},
+			id_card_no = #{idCardNo},
+			latitude = #{latitude},
+			longitude = #{longitude},
+			wechat_qr_code = #{wechatQrCode},
+			shop_photo = #{shopPhoto},
+			type = #{type},
+		</set>
+		WHERE supplier_id = #{supplierId}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Boolean">
+	DELETE FROM yzy_supplier
+			WHERE supplier_id = #{id}
+	</delete>
+
+</mapper>

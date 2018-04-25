@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.generator.dao.GenTableDao">
+
+    <resultMap id="ResultMap" type="com.github.generator.entity.GenTable">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="comments" property="comments" />
+		<result column="class_name" property="className" />
+		<result column="extend_base" property="extendBase" />
+		<result column="parent_table" property="parentTable" />
+		<result column="parent_table_fk" property="parentTableFk" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="valid" property="valid" />
+  	</resultMap>
+
+	<sql id="Column_List">
+		id,
+		name,
+		comments,
+		class_name,
+		extend_base,
+		parent_table,
+		parent_table_fk,
+		create_time,
+		update_time,
+		valid
+	</sql>
+	
+	<sql id="Column_List_T">
+		t.id,
+		t.name,
+		t.comments,
+		t.class_name,
+		t.extend_base,
+		t.parent_table,
+		t.parent_table_fk,
+		t.create_time,
+		t.update_time,
+		t.valid
+	</sql>
+
+</mapper>

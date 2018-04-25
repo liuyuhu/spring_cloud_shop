@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.generator.dao.GenTableColumnDao">
+
+	<resultMap id="BaseResultMap" type="com.github.generator.entity.GenTableColumn">
+		<id column="id" property="id" />
+		<result column="gen_table_id" property="genTableId" />
+		<result column="name" property="name" />
+		<result column="comments" property="comments" />
+		<result column="jdbc_type" property="jdbcType" />
+		<result column="java_type" property="javaType" />
+		<result column="java_field" property="javaField" />
+		<result column="is_pk" property="isPk" />
+		<result column="is_null" property="isNull" />
+		<result column="is_insert" property="isInsert" />
+		<result column="is_edit" property="isEdit" />
+		<result column="is_list" property="isList" />
+		<result column="is_query" property="isQuery" />
+		<result column="query_type" property="queryType" />
+		<result column="show_type" property="showType" />
+		<result column="dict_type" property="dictType" />
+		<result column="settings" property="settings" />
+		<result column="sort" property="sort" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="valid" property="valid" />
+  	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		gen_table_id,
+		name,
+		comments,
+		jdbc_type,
+		java_type,
+		java_field,
+		is_pk,
+		is_null,
+		is_insert,
+		is_edit,
+		is_list,
+		is_query,
+		query_type,
+		show_type,
+		dict_type,
+		settings,
+		sort,
+		create_time,
+		update_time,
+		valid
+	</sql>
+
+	<select id="get" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM gen_table_column
+		WHERE id = #{id}
+	</select>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM gen_table_column
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<sql id="WHERE_BASE">
+		<where>
+			<choose>
+				<when test="valid != null">
+					t.valid = #{valid}
+				</when>
+				<otherwise>
+					t.valid = 1
+				</otherwise>
+			</choose>
+			<if test="id != null and id != ''">
+				AND t.id = #{id}
+			</if>
+			<if test="genTableId != null and genTableId != ''">
+				AND t.gen_table_id = #{genTableId}
+			</if>
+			<if test="name != null and name != ''">
+				AND t.name LIKE
+					concat('%',#{name},'%')
+			</if>
+			<if test="comments != null and comments != ''">
+				AND t.comments = #{comments}
+			</if>
+			<if test="jdbcType != null and jdbcType != ''">
+				AND t.jdbc_type = #{jdbcType}
+			</if>
+			<if test="javaType != null and javaType != ''">
+				AND t.java_type = #{javaType}
+			</if>
+			<if test="javaField != null and javaField != ''">
+				AND t.java_field = #{javaField}
+			</if>
+			<if test="isPk != null and isPk != ''">
+				AND t.is_pk = #{isPk}
+			</if>
+			<if test="isNull != null and isNull != ''">
+				AND t.is_null = #{isNull}
+			</if>
+			<if test="isInsert != null and isInsert != ''">
+				AND t.is_insert = #{isInsert}
+			</if>
+			<if test="isEdit != null and isEdit != ''">
+				AND t.is_edit = #{isEdit}
+			</if>
+			<if test="isList != null and isList != ''">
+				AND t.is_list = #{isList}
+			</if>
+			<if test="isQuery != null and isQuery != ''">
+				AND t.is_query = #{isQuery}
+			</if>
+			<if test="queryType != null and queryType != ''">
+				AND t.query_type = #{queryType}
+			</if>
+			<if test="showType != null and showType != ''">
+				AND t.show_type = #{showType}
+			</if>
+			<if test="dictType != null and dictType != ''">
+				AND t.dict_type = #{dictType}
+			</if>
+			<if test="settings != null and settings != ''">
+				AND t.settings = #{settings}
+			</if>
+			<if test="sort != null and sort != ''">
+				AND t.sort = #{sort}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM gen_table_column t
+		<include refid="WHERE_BASE" />
+		ORDER BY t.create_time ASC
+	</select>
+
+	<select id="listPage" resultMap="BaseResultMap" parameterType="Page">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM gen_table_column t
+		<where>
+			<choose>
+				<when test="condition != null">
+					<choose>
+						<when test="condition.valid != null">
+							t.valid = #{condition.valid}
+						</when>
+						<otherwise>
+							t.valid = 1
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+					t.valid = 1
+				</otherwise>
+			</choose>
+			<if test="condition != null">
+			<if test="condition.id != null and condition.id != ''">
+				AND t.id = #{condition.id}
+			</if>
+			<if test="condition.genTableId != null and condition.genTableId != ''">
+				AND t.gen_table_id = #{condition.genTableId}
+			</if>
+			<if test="condition.name != null and condition.name != ''">
+				AND t.name LIKE
+					concat('%',#{condition.name},'%')
+			</if>
+			<if test="condition.comments != null and condition.comments != ''">
+				AND t.comments = #{condition.comments}
+			</if>
+			<if test="condition.jdbcType != null and condition.jdbcType != ''">
+				AND t.jdbc_type = #{condition.jdbcType}
+			</if>
+			<if test="condition.javaType != null and condition.javaType != ''">
+				AND t.java_type = #{condition.javaType}
+			</if>
+			<if test="condition.javaField != null and condition.javaField != ''">
+				AND t.java_field = #{condition.javaField}
+			</if>
+			<if test="condition.isPk != null and condition.isPk != ''">
+				AND t.is_pk = #{condition.isPk}
+			</if>
+			<if test="condition.isNull != null and condition.isNull != ''">
+				AND t.is_null = #{condition.isNull}
+			</if>
+			<if test="condition.isInsert != null and condition.isInsert != ''">
+				AND t.is_insert = #{condition.isInsert}
+			</if>
+			<if test="condition.isEdit != null and condition.isEdit != ''">
+				AND t.is_edit = #{condition.isEdit}
+			</if>
+			<if test="condition.isList != null and condition.isList != ''">
+				AND t.is_list = #{condition.isList}
+			</if>
+			<if test="condition.isQuery != null and condition.isQuery != ''">
+				AND t.is_query = #{condition.isQuery}
+			</if>
+			<if test="condition.queryType != null and condition.queryType != ''">
+				AND t.query_type = #{condition.queryType}
+			</if>
+			<if test="condition.showType != null and condition.showType != ''">
+				AND t.show_type = #{condition.showType}
+			</if>
+			<if test="condition.dictType != null and condition.dictType != ''">
+				AND t.dict_type = #{condition.dictType}
+			</if>
+			<if test="condition.settings != null and condition.settings != ''">
+				AND t.settings = #{condition.settings}
+			</if>
+			<if test="condition.sort != null and condition.sort != ''">
+				AND t.sort = #{condition.sort}
+			</if>
+			</if>
+		</where>
+		<choose>
+			<when test="orderBy != null and orderBy != ''">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY t.create_time ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="save">
+		INSERT INTO gen_table_column
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">
+				id,
+			</if>
+			<if test="genTableId != null and genTableId != ''">
+				gen_table_id,
+			</if>
+			<if test="name != null and name != ''">
+				name,
+			</if>
+			<if test="comments != null and comments != ''">
+				comments,
+			</if>
+			<if test="jdbcType != null and jdbcType != ''">
+				jdbc_type,
+			</if>
+			<if test="javaType != null and javaType != ''">
+				java_type,
+			</if>
+			<if test="javaField != null and javaField != ''">
+				java_field,
+			</if>
+			<if test="isPk != null and isPk != ''">
+				is_pk,
+			</if>
+			<if test="isNull != null and isNull != ''">
+				is_null,
+			</if>
+			<if test="isInsert != null and isInsert != ''">
+				is_insert,
+			</if>
+			<if test="isEdit != null and isEdit != ''">
+				is_edit,
+			</if>
+			<if test="isList != null and isList != ''">
+				is_list,
+			</if>
+			<if test="isQuery != null and isQuery != ''">
+				is_query,
+			</if>
+			<if test="queryType != null and queryType != ''">
+				query_type,
+			</if>
+			<if test="showType != null and showType != ''">
+				show_type,
+			</if>
+			<if test="dictType != null and dictType != ''">
+				dict_type,
+			</if>
+			<if test="settings != null and settings != ''">
+				settings,
+			</if>
+			<if test="sort != null and sort != ''">
+				sort,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="valid != null">
+				valid,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">
+				#{id},
+			</if>
+			<if test="genTableId != null and genTableId != ''">
+				#{genTableId},
+			</if>
+			<if test="name != null and name != ''">
+				#{name},
+			</if>
+			<if test="comments != null and comments != ''">
+				#{comments},
+			</if>
+			<if test="jdbcType != null and jdbcType != ''">
+				#{jdbcType},
+			</if>
+			<if test="javaType != null and javaType != ''">
+				#{javaType},
+			</if>
+			<if test="javaField != null and javaField != ''">
+				#{javaField},
+			</if>
+			<if test="isPk != null and isPk != ''">
+				#{isPk},
+			</if>
+			<if test="isNull != null and isNull != ''">
+				#{isNull},
+			</if>
+			<if test="isInsert != null and isInsert != ''">
+				#{isInsert},
+			</if>
+			<if test="isEdit != null and isEdit != ''">
+				#{isEdit},
+			</if>
+			<if test="isList != null and isList != ''">
+				#{isList},
+			</if>
+			<if test="isQuery != null and isQuery != ''">
+				#{isQuery},
+			</if>
+			<if test="queryType != null and queryType != ''">
+				#{queryType},
+			</if>
+			<if test="showType != null and showType != ''">
+				#{showType},
+			</if>
+			<if test="dictType != null and dictType != ''">
+				#{dictType},
+			</if>
+			<if test="settings != null and settings != ''">
+				#{settings},
+			</if>
+			<if test="sort != null and sort != ''">
+				#{sort},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime},
+			</if>
+			<if test="valid != null">
+				#{valid},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update">
+		UPDATE gen_table_column
+		<set>
+			<if test="genTableId != null and genTableId != ''">
+				gen_table_id = #{genTableId},
+			</if>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="comments != null and comments != ''">
+				comments = #{comments},
+			</if>
+			<if test="jdbcType != null and jdbcType != ''">
+				jdbc_type = #{jdbcType},
+			</if>
+			<if test="javaType != null and javaType != ''">
+				java_type = #{javaType},
+			</if>
+			<if test="javaField != null and javaField != ''">
+				java_field = #{javaField},
+			</if>
+			<if test="isPk != null and isPk != ''">
+				is_pk = #{isPk},
+			</if>
+			<if test="isNull != null and isNull != ''">
+				is_null = #{isNull},
+			</if>
+			<if test="isInsert != null and isInsert != ''">
+				is_insert = #{isInsert},
+			</if>
+			<if test="isEdit != null and isEdit != ''">
+				is_edit = #{isEdit},
+			</if>
+			<if test="isList != null and isList != ''">
+				is_list = #{isList},
+			</if>
+			<if test="isQuery != null and isQuery != ''">
+				is_query = #{isQuery},
+			</if>
+			<if test="queryType != null and queryType != ''">
+				query_type = #{queryType},
+			</if>
+			<if test="showType != null and showType != ''">
+				show_type = #{showType},
+			</if>
+			<if test="dictType != null and dictType != ''">
+				dict_type = #{dictType},
+			</if>
+			<if test="settings != null and settings != ''">
+				settings = #{settings},
+			</if>
+			<if test="sort != null and sort != ''">
+				sort = #{sort},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="valid != null">
+				valid = #{valid},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<update id="updateAll">
+		UPDATE gen_table_column
+		<set>
+			gen_table_id = #{genTableId},
+			name = #{name},
+			comments = #{comments},
+			jdbc_type = #{jdbcType},
+			java_type = #{javaType},
+			java_field = #{javaField},
+			is_pk = #{isPk},
+			is_null = #{isNull},
+			is_insert = #{isInsert},
+			is_edit = #{isEdit},
+			is_list = #{isList},
+			is_query = #{isQuery},
+			query_type = #{queryType},
+			show_type = #{showType},
+			dict_type = #{dictType},
+			settings = #{settings},
+			sort = #{sort},
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			valid = #{valid},
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Boolean">
+	<choose>
+		<when test="logic">
+			UPDATE gen_table_column
+			SET valid = "0"
+			WHERE id = #{id}
+		</when>
+		<otherwise>
+			DELETE FROM gen_table_column
+			WHERE id = #{id}
+		</otherwise>
+	</choose>
+	</delete>
+
+</mapper>

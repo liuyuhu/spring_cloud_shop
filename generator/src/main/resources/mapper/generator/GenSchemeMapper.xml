@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.generator.dao.GenSchemeDao">
+
+    <resultMap id="ResultMap" type="com.github.generator.entity.GenScheme">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="table_name" property="tableName" />
+		<result column="category" property="category" />
+		<result column="change_module" property="changeModule" />
+		<result column="package_name" property="packageName" />
+		<result column="module_name" property="moduleName" />
+		<result column="sub_module_name" property="subModuleName" />
+		<result column="function_name" property="functionName" />
+		<result column="function_name_simple" property="functionNameSimple" />
+		<result column="function_author" property="functionAuthor" />
+		<result column="gen_table_id" property="genTableId" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="valid" property="valid" />
+  	</resultMap>
+
+	<sql id="Column_List">
+		id,
+		name,
+		table_name,
+		category,
+		change_module,
+		package_name,
+		module_name,
+		sub_module_name,
+		function_name,
+		function_name_simple,
+		function_author,
+		gen_table_id,
+		create_time,
+		update_time,
+		valid
+	</sql>
+	
+	<sql id="Column_List_T">
+		t.id,
+		t.name,
+		t.table_name,
+		t.category,
+		t.change_module,
+		t.package_name,
+		t.module_name,
+		t.sub_module_name,
+		t.function_name,
+		t.function_name_simple,
+		t.function_author,
+		t.gen_table_id,
+		t.create_time,
+		t.update_time,
+		t.valid
+	</sql>
+
+</mapper>

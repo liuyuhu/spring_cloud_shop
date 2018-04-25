@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diaojuku.shop.user.dao.UserDao">
+
+	<resultMap id="BaseResultMap" type="com.diaojuku.shop.user.entity.User">
+		<id column="user_id" property="userId" />
+		<result column="aite_id" property="aiteId" />
+		<result column="email" property="email" />
+		<result column="user_name" property="userName" />
+		<result column="password" property="password" />
+		<result column="is_surplus_open" property="isSurplusOpen" />
+		<result column="surplus_password" property="surplusPassword" />
+		<result column="question" property="question" />
+		<result column="answer" property="answer" />
+		<result column="sex" property="sex" />
+		<result column="birthday" property="birthday" />
+		<result column="user_money" property="userMoney" />
+		<result column="frozen_money" property="frozenMoney" />
+		<result column="pay_points" property="payPoints" />
+		<result column="rank_points" property="rankPoints" />
+		<result column="address_id" property="addressId" />
+		<result column="reg_time" property="regTime" />
+		<result column="last_login" property="lastLogin" />
+		<result column="last_time" property="lastTime" />
+		<result column="last_ip" property="lastIp" />
+		<result column="visit_count" property="visitCount" />
+		<result column="user_rank" property="userRank" />
+		<result column="is_special" property="isSpecial" />
+		<result column="ec_salt" property="ecSalt" />
+		<result column="salt" property="salt" />
+		<result column="parent_id" property="parentId" />
+		<result column="flag" property="flag" />
+		<result column="alias" property="alias" />
+		<result column="msn" property="msn" />
+		<result column="qq" property="qq" />
+		<result column="office_phone" property="officePhone" />
+		<result column="home_phone" property="homePhone" />
+		<result column="mobile_phone" property="mobilePhone" />
+		<result column="is_validated" property="isValidated" />
+		<result column="validated" property="validated" />
+		<result column="credit_line" property="creditLine" />
+		<result column="passwd_question" property="passwdQuestion" />
+		<result column="passwd_answer" property="passwdAnswer" />
+		<result column="passwd_weixin" property="passwdWeixin" />
+		<result column="is_fenxiao" property="isFenxiao" />
+		<result column="real_name" property="realName" />
+		<result column="card" property="card" />
+		<result column="face_card" property="faceCard" />
+		<result column="back_card" property="backCard" />
+		<result column="country" property="country" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="district" property="district" />
+		<result column="address" property="address" />
+		<result column="status" property="status" />
+		<result column="mediaUID" property="mediauid" />
+		<result column="mediaID" property="mediaid" />
+		<result column="froms" property="froms" />
+		<result column="headimg" property="headimg" />
+  	</resultMap>
+
+	<sql id="Base_Column_List">
+		user_id,
+		aite_id,
+		email,
+		user_name,
+		password,
+		is_surplus_open,
+		surplus_password,
+		question,
+		answer,
+		sex,
+		birthday,
+		user_money,
+		frozen_money,
+		pay_points,
+		rank_points,
+		address_id,
+		reg_time,
+		last_login,
+		last_time,
+		last_ip,
+		visit_count,
+		user_rank,
+		is_special,
+		ec_salt,
+		salt,
+		parent_id,
+		flag,
+		alias,
+		msn,
+		qq,
+		office_phone,
+		home_phone,
+		mobile_phone,
+		is_validated,
+		validated,
+		credit_line,
+		passwd_question,
+		passwd_answer,
+		passwd_weixin,
+		is_fenxiao,
+		real_name,
+		card,
+		face_card,
+		back_card,
+		country,
+		province,
+		city,
+		district,
+		address,
+		status,
+		mediaUID,
+		mediaID,
+		froms,
+		headimg
+	</sql>
+
+	<select id="get" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM yzy_users
+		WHERE user_id = #{id}
+	</select>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM yzy_users
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<sql id="WHERE_BASE">
+		<where>
+			<if test="userId != null">
+				AND t.user_id = #{userId}
+			</if>
+			<if test="aiteId != null and aiteId != ''">
+				AND t.aite_id = #{aiteId}
+			</if>
+			<if test="email != null and email != ''">
+				AND t.email = #{email}
+			</if>
+			<if test="userName != null and userName != ''">
+				AND t.user_name = #{userName}
+			</if>
+			<if test="password != null and password != ''">
+				AND t.password = #{password}
+			</if>
+			<if test="isSurplusOpen != null">
+				AND t.is_surplus_open = #{isSurplusOpen}
+			</if>
+			<if test="surplusPassword != null and surplusPassword != ''">
+				AND t.surplus_password = #{surplusPassword}
+			</if>
+			<if test="question != null and question != ''">
+				AND t.question = #{question}
+			</if>
+			<if test="answer != null and answer != ''">
+				AND t.answer = #{answer}
+			</if>
+			<if test="sex != null">
+				AND t.sex = #{sex}
+			</if>
+			<if test="birthday != null">
+				AND t.birthday = #{birthday}
+			</if>
+			<if test="userMoney != null and userMoney != ''">
+				AND t.user_money = #{userMoney}
+			</if>
+			<if test="frozenMoney != null and frozenMoney != ''">
+				AND t.frozen_money = #{frozenMoney}
+			</if>
+			<if test="payPoints != null">
+				AND t.pay_points = #{payPoints}
+			</if>
+			<if test="rankPoints != null">
+				AND t.rank_points = #{rankPoints}
+			</if>
+			<if test="addressId != null">
+				AND t.address_id = #{addressId}
+			</if>
+			<if test="regTime != null">
+				AND t.reg_time = #{regTime}
+			</if>
+			<if test="lastLogin != null">
+				AND t.last_login = #{lastLogin}
+			</if>
+			<if test="lastTime != null">
+				AND t.last_time = #{lastTime}
+			</if>
+			<if test="lastIp != null and lastIp != ''">
+				AND t.last_ip = #{lastIp}
+			</if>
+			<if test="visitCount != null">
+				AND t.visit_count = #{visitCount}
+			</if>
+			<if test="userRank != null">
+				AND t.user_rank = #{userRank}
+			</if>
+			<if test="isSpecial != null">
+				AND t.is_special = #{isSpecial}
+			</if>
+			<if test="ecSalt != null and ecSalt != ''">
+				AND t.ec_salt = #{ecSalt}
+			</if>
+			<if test="salt != null and salt != ''">
+				AND t.salt = #{salt}
+			</if>
+			<if test="parentId != null">
+				AND t.parent_id = #{parentId}
+			</if>
+			<if test="flag != null">
+				AND t.flag = #{flag}
+			</if>
+			<if test="alias != null and alias != ''">
+				AND t.alias = #{alias}
+			</if>
+			<if test="msn != null and msn != ''">
+				AND t.msn = #{msn}
+			</if>
+			<if test="qq != null and qq != ''">
+				AND t.qq = #{qq}
+			</if>
+			<if test="officePhone != null and officePhone != ''">
+				AND t.office_phone = #{officePhone}
+			</if>
+			<if test="homePhone != null and homePhone != ''">
+				AND t.home_phone = #{homePhone}
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				AND t.mobile_phone = #{mobilePhone}
+			</if>
+			<if test="isValidated != null">
+				AND t.is_validated = #{isValidated}
+			</if>
+			<if test="validated != null">
+				AND t.validated = #{validated}
+			</if>
+			<if test="creditLine != null and creditLine != ''">
+				AND t.credit_line = #{creditLine}
+			</if>
+			<if test="passwdQuestion != null and passwdQuestion != ''">
+				AND t.passwd_question = #{passwdQuestion}
+			</if>
+			<if test="passwdAnswer != null and passwdAnswer != ''">
+				AND t.passwd_answer = #{passwdAnswer}
+			</if>
+			<if test="passwdWeixin != null and passwdWeixin != ''">
+				AND t.passwd_weixin = #{passwdWeixin}
+			</if>
+			<if test="isFenxiao != null">
+				AND t.is_fenxiao = #{isFenxiao}
+			</if>
+			<if test="realName != null and realName != ''">
+				AND t.real_name = #{realName}
+			</if>
+			<if test="card != null and card != ''">
+				AND t.card = #{card}
+			</if>
+			<if test="faceCard != null and faceCard != ''">
+				AND t.face_card = #{faceCard}
+			</if>
+			<if test="backCard != null and backCard != ''">
+				AND t.back_card = #{backCard}
+			</if>
+			<if test="country != null">
+				AND t.country = #{country}
+			</if>
+			<if test="province != null">
+				AND t.province = #{province}
+			</if>
+			<if test="city != null">
+				AND t.city = #{city}
+			</if>
+			<if test="district != null">
+				AND t.district = #{district}
+			</if>
+			<if test="address != null and address != ''">
+				AND t.address = #{address}
+			</if>
+			<if test="status != null">
+				AND t.status = #{status}
+			</if>
+			<if test="mediauid != null and mediauid != ''">
+				AND t.mediaUID = #{mediauid}
+			</if>
+			<if test="mediaid != null">
+				AND t.mediaID = #{mediaid}
+			</if>
+			<if test="froms != null and froms != ''">
+				AND t.froms = #{froms}
+			</if>
+			<if test="headimg != null and headimg != ''">
+				AND t.headimg = #{headimg}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List"/>
+		FROM yzy_users t
+		<include refid="WHERE_BASE" />
+	</select>
+
+	<select id="listPage" resultMap="BaseResultMap" parameterType="Page">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM yzy_users t
+		<where>
+			<if test="condition != null">
+			<if test="condition.userId != null">
+				AND t.user_id = #{condition.userId}
+			</if>
+			<if test="condition.aiteId != null and condition.aiteId != ''">
+				AND t.aite_id = #{condition.aiteId}
+			</if>
+			<if test="condition.email != null and condition.email != ''">
+				AND t.email = #{condition.email}
+			</if>
+			<if test="condition.userName != null and condition.userName != ''">
+				AND t.user_name = #{condition.userName}
+			</if>
+			<if test="condition.password != null and condition.password != ''">
+				AND t.password = #{condition.password}
+			</if>
+			<if test="condition.isSurplusOpen != null">
+				AND t.is_surplus_open = #{condition.isSurplusOpen}
+			</if>
+			<if test="condition.surplusPassword != null and condition.surplusPassword != ''">
+				AND t.surplus_password = #{condition.surplusPassword}
+			</if>
+			<if test="condition.question != null and condition.question != ''">
+				AND t.question = #{condition.question}
+			</if>
+			<if test="condition.answer != null and condition.answer != ''">
+				AND t.answer = #{condition.answer}
+			</if>
+			<if test="condition.sex != null">
+				AND t.sex = #{condition.sex}
+			</if>
+			<if test="condition.birthday != null">
+				AND t.birthday = #{condition.birthday}
+			</if>
+			<if test="condition.userMoney != null and condition.userMoney != ''">
+				AND t.user_money = #{condition.userMoney}
+			</if>
+			<if test="condition.frozenMoney != null and condition.frozenMoney != ''">
+				AND t.frozen_money = #{condition.frozenMoney}
+			</if>
+			<if test="condition.payPoints != null">
+				AND t.pay_points = #{condition.payPoints}
+			</if>
+			<if test="condition.rankPoints != null">
+				AND t.rank_points = #{condition.rankPoints}
+			</if>
+			<if test="condition.addressId != null">
+				AND t.address_id = #{condition.addressId}
+			</if>
+			<if test="condition.regTime != null">
+				AND t.reg_time = #{condition.regTime}
+			</if>
+			<if test="condition.lastLogin != null">
+				AND t.last_login = #{condition.lastLogin}
+			</if>
+			<if test="condition.lastTime != null">
+				AND t.last_time = #{condition.lastTime}
+			</if>
+			<if test="condition.lastIp != null and condition.lastIp != ''">
+				AND t.last_ip = #{condition.lastIp}
+			</if>
+			<if test="condition.visitCount != null">
+				AND t.visit_count = #{condition.visitCount}
+			</if>
+			<if test="condition.userRank != null">
+				AND t.user_rank = #{condition.userRank}
+			</if>
+			<if test="condition.isSpecial != null">
+				AND t.is_special = #{condition.isSpecial}
+			</if>
+			<if test="condition.ecSalt != null and condition.ecSalt != ''">
+				AND t.ec_salt = #{condition.ecSalt}
+			</if>
+			<if test="condition.salt != null and condition.salt != ''">
+				AND t.salt = #{condition.salt}
+			</if>
+			<if test="condition.parentId != null">
+				AND t.parent_id = #{condition.parentId}
+			</if>
+			<if test="condition.flag != null">
+				AND t.flag = #{condition.flag}
+			</if>
+			<if test="condition.alias != null and condition.alias != ''">
+				AND t.alias = #{condition.alias}
+			</if>
+			<if test="condition.msn != null and condition.msn != ''">
+				AND t.msn = #{condition.msn}
+			</if>
+			<if test="condition.qq != null and condition.qq != ''">
+				AND t.qq = #{condition.qq}
+			</if>
+			<if test="condition.officePhone != null and condition.officePhone != ''">
+				AND t.office_phone = #{condition.officePhone}
+			</if>
+			<if test="condition.homePhone != null and condition.homePhone != ''">
+				AND t.home_phone = #{condition.homePhone}
+			</if>
+			<if test="condition.mobilePhone != null and condition.mobilePhone != ''">
+				AND t.mobile_phone = #{condition.mobilePhone}
+			</if>
+			<if test="condition.isValidated != null">
+				AND t.is_validated = #{condition.isValidated}
+			</if>
+			<if test="condition.validated != null">
+				AND t.validated = #{condition.validated}
+			</if>
+			<if test="condition.creditLine != null and condition.creditLine != ''">
+				AND t.credit_line = #{condition.creditLine}
+			</if>
+			<if test="condition.passwdQuestion != null and condition.passwdQuestion != ''">
+				AND t.passwd_question = #{condition.passwdQuestion}
+			</if>
+			<if test="condition.passwdAnswer != null and condition.passwdAnswer != ''">
+				AND t.passwd_answer = #{condition.passwdAnswer}
+			</if>
+			<if test="condition.passwdWeixin != null and condition.passwdWeixin != ''">
+				AND t.passwd_weixin = #{condition.passwdWeixin}
+			</if>
+			<if test="condition.isFenxiao != null">
+				AND t.is_fenxiao = #{condition.isFenxiao}
+			</if>
+			<if test="condition.realName != null and condition.realName != ''">
+				AND t.real_name = #{condition.realName}
+			</if>
+			<if test="condition.card != null and condition.card != ''">
+				AND t.card = #{condition.card}
+			</if>
+			<if test="condition.faceCard != null and condition.faceCard != ''">
+				AND t.face_card = #{condition.faceCard}
+			</if>
+			<if test="condition.backCard != null and condition.backCard != ''">
+				AND t.back_card = #{condition.backCard}
+			</if>
+			<if test="condition.country != null">
+				AND t.country = #{condition.country}
+			</if>
+			<if test="condition.province != null">
+				AND t.province = #{condition.province}
+			</if>
+			<if test="condition.city != null">
+				AND t.city = #{condition.city}
+			</if>
+			<if test="condition.district != null">
+				AND t.district = #{condition.district}
+			</if>
+			<if test="condition.address != null and condition.address != ''">
+				AND t.address = #{condition.address}
+			</if>
+			<if test="condition.status != null">
+				AND t.status = #{condition.status}
+			</if>
+			<if test="condition.mediauid != null and condition.mediauid != ''">
+				AND t.mediaUID = #{condition.mediauid}
+			</if>
+			<if test="condition.mediaid != null">
+				AND t.mediaID = #{condition.mediaid}
+			</if>
+			<if test="condition.froms != null and condition.froms != ''">
+				AND t.froms = #{condition.froms}
+			</if>
+			<if test="condition.headimg != null and condition.headimg != ''">
+				AND t.headimg = #{condition.headimg}
+			</if>
+			</if>
+		</where>
+		<choose>
+			<when test="orderBy != null and orderBy != ''">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="save" useGeneratedKeys="true" keyProperty="user_id">
+		INSERT INTO yzy_users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="aiteId != null and aiteId != ''">
+				aite_id,
+			</if>
+			<if test="email != null and email != ''">
+				email,
+			</if>
+			<if test="userName != null and userName != ''">
+				user_name,
+			</if>
+			<if test="password != null and password != ''">
+				password,
+			</if>
+			<if test="isSurplusOpen != null">
+				is_surplus_open,
+			</if>
+			<if test="surplusPassword != null and surplusPassword != ''">
+				surplus_password,
+			</if>
+			<if test="question != null and question != ''">
+				question,
+			</if>
+			<if test="answer != null and answer != ''">
+				answer,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="userMoney != null and userMoney != ''">
+				user_money,
+			</if>
+			<if test="frozenMoney != null and frozenMoney != ''">
+				frozen_money,
+			</if>
+			<if test="payPoints != null">
+				pay_points,
+			</if>
+			<if test="rankPoints != null">
+				rank_points,
+			</if>
+			<if test="addressId != null">
+				address_id,
+			</if>
+			<if test="regTime != null">
+				reg_time,
+			</if>
+			<if test="lastLogin != null">
+				last_login,
+			</if>
+			<if test="lastTime != null">
+				last_time,
+			</if>
+			<if test="lastIp != null and lastIp != ''">
+				last_ip,
+			</if>
+			<if test="visitCount != null">
+				visit_count,
+			</if>
+			<if test="userRank != null">
+				user_rank,
+			</if>
+			<if test="isSpecial != null">
+				is_special,
+			</if>
+			<if test="ecSalt != null and ecSalt != ''">
+				ec_salt,
+			</if>
+			<if test="salt != null and salt != ''">
+				salt,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="alias != null and alias != ''">
+				alias,
+			</if>
+			<if test="msn != null and msn != ''">
+				msn,
+			</if>
+			<if test="qq != null and qq != ''">
+				qq,
+			</if>
+			<if test="officePhone != null and officePhone != ''">
+				office_phone,
+			</if>
+			<if test="homePhone != null and homePhone != ''">
+				home_phone,
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				mobile_phone,
+			</if>
+			<if test="isValidated != null">
+				is_validated,
+			</if>
+			<if test="validated != null">
+				validated,
+			</if>
+			<if test="creditLine != null and creditLine != ''">
+				credit_line,
+			</if>
+			<if test="passwdQuestion != null and passwdQuestion != ''">
+				passwd_question,
+			</if>
+			<if test="passwdAnswer != null and passwdAnswer != ''">
+				passwd_answer,
+			</if>
+			<if test="passwdWeixin != null and passwdWeixin != ''">
+				passwd_weixin,
+			</if>
+			<if test="isFenxiao != null">
+				is_fenxiao,
+			</if>
+			<if test="realName != null and realName != ''">
+				real_name,
+			</if>
+			<if test="card != null and card != ''">
+				card,
+			</if>
+			<if test="faceCard != null and faceCard != ''">
+				face_card,
+			</if>
+			<if test="backCard != null and backCard != ''">
+				back_card,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
+			</if>
+			<if test="address != null and address != ''">
+				address,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="mediauid != null and mediauid != ''">
+				mediaUID,
+			</if>
+			<if test="mediaid != null">
+				mediaID,
+			</if>
+			<if test="froms != null and froms != ''">
+				froms,
+			</if>
+			<if test="headimg != null and headimg != ''">
+				headimg,
+			</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId},
+			</if>
+			<if test="aiteId != null and aiteId != ''">
+				#{aiteId},
+			</if>
+			<if test="email != null and email != ''">
+				#{email},
+			</if>
+			<if test="userName != null and userName != ''">
+				#{userName},
+			</if>
+			<if test="password != null and password != ''">
+				#{password},
+			</if>
+			<if test="isSurplusOpen != null">
+				#{isSurplusOpen},
+			</if>
+			<if test="surplusPassword != null and surplusPassword != ''">
+				#{surplusPassword},
+			</if>
+			<if test="question != null and question != ''">
+				#{question},
+			</if>
+			<if test="answer != null and answer != ''">
+				#{answer},
+			</if>
+			<if test="sex != null">
+				#{sex},
+			</if>
+			<if test="birthday != null">
+				#{birthday},
+			</if>
+			<if test="userMoney != null and userMoney != ''">
+				#{userMoney},
+			</if>
+			<if test="frozenMoney != null and frozenMoney != ''">
+				#{frozenMoney},
+			</if>
+			<if test="payPoints != null">
+				#{payPoints},
+			</if>
+			<if test="rankPoints != null">
+				#{rankPoints},
+			</if>
+			<if test="addressId != null">
+				#{addressId},
+			</if>
+			<if test="regTime != null">
+				#{regTime},
+			</if>
+			<if test="lastLogin != null">
+				#{lastLogin},
+			</if>
+			<if test="lastTime != null">
+				#{lastTime},
+			</if>
+			<if test="lastIp != null and lastIp != ''">
+				#{lastIp},
+			</if>
+			<if test="visitCount != null">
+				#{visitCount},
+			</if>
+			<if test="userRank != null">
+				#{userRank},
+			</if>
+			<if test="isSpecial != null">
+				#{isSpecial},
+			</if>
+			<if test="ecSalt != null and ecSalt != ''">
+				#{ecSalt},
+			</if>
+			<if test="salt != null and salt != ''">
+				#{salt},
+			</if>
+			<if test="parentId != null">
+				#{parentId},
+			</if>
+			<if test="flag != null">
+				#{flag},
+			</if>
+			<if test="alias != null and alias != ''">
+				#{alias},
+			</if>
+			<if test="msn != null and msn != ''">
+				#{msn},
+			</if>
+			<if test="qq != null and qq != ''">
+				#{qq},
+			</if>
+			<if test="officePhone != null and officePhone != ''">
+				#{officePhone},
+			</if>
+			<if test="homePhone != null and homePhone != ''">
+				#{homePhone},
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				#{mobilePhone},
+			</if>
+			<if test="isValidated != null">
+				#{isValidated},
+			</if>
+			<if test="validated != null">
+				#{validated},
+			</if>
+			<if test="creditLine != null and creditLine != ''">
+				#{creditLine},
+			</if>
+			<if test="passwdQuestion != null and passwdQuestion != ''">
+				#{passwdQuestion},
+			</if>
+			<if test="passwdAnswer != null and passwdAnswer != ''">
+				#{passwdAnswer},
+			</if>
+			<if test="passwdWeixin != null and passwdWeixin != ''">
+				#{passwdWeixin},
+			</if>
+			<if test="isFenxiao != null">
+				#{isFenxiao},
+			</if>
+			<if test="realName != null and realName != ''">
+				#{realName},
+			</if>
+			<if test="card != null and card != ''">
+				#{card},
+			</if>
+			<if test="faceCard != null and faceCard != ''">
+				#{faceCard},
+			</if>
+			<if test="backCard != null and backCard != ''">
+				#{backCard},
+			</if>
+			<if test="country != null">
+				#{country},
+			</if>
+			<if test="province != null">
+				#{province},
+			</if>
+			<if test="city != null">
+				#{city},
+			</if>
+			<if test="district != null">
+				#{district},
+			</if>
+			<if test="address != null and address != ''">
+				#{address},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="mediauid != null and mediauid != ''">
+				#{mediauid},
+			</if>
+			<if test="mediaid != null">
+				#{mediaid},
+			</if>
+			<if test="froms != null and froms != ''">
+				#{froms},
+			</if>
+			<if test="headimg != null and headimg != ''">
+				#{headimg},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update">
+		UPDATE yzy_users
+		<set>
+			<if test="aiteId != null and aiteId != ''">
+				aite_id = #{aiteId},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+			<if test="userName != null and userName != ''">
+				user_name = #{userName},
+			</if>
+			<if test="password != null and password != ''">
+				password = #{password},
+			</if>
+			<if test="isSurplusOpen != null">
+				is_surplus_open = #{isSurplusOpen},
+			</if>
+			<if test="surplusPassword != null and surplusPassword != ''">
+				surplus_password = #{surplusPassword},
+			</if>
+			<if test="question != null and question != ''">
+				question = #{question},
+			</if>
+			<if test="answer != null and answer != ''">
+				answer = #{answer},
+			</if>
+			<if test="sex != null">
+				sex = #{sex},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday},
+			</if>
+			<if test="userMoney != null and userMoney != ''">
+				user_money = #{userMoney},
+			</if>
+			<if test="frozenMoney != null and frozenMoney != ''">
+				frozen_money = #{frozenMoney},
+			</if>
+			<if test="payPoints != null">
+				pay_points = #{payPoints},
+			</if>
+			<if test="rankPoints != null">
+				rank_points = #{rankPoints},
+			</if>
+			<if test="addressId != null">
+				address_id = #{addressId},
+			</if>
+			<if test="regTime != null">
+				reg_time = #{regTime},
+			</if>
+			<if test="lastLogin != null">
+				last_login = #{lastLogin},
+			</if>
+			<if test="lastTime != null">
+				last_time = #{lastTime},
+			</if>
+			<if test="lastIp != null and lastIp != ''">
+				last_ip = #{lastIp},
+			</if>
+			<if test="visitCount != null">
+				visit_count = #{visitCount},
+			</if>
+			<if test="userRank != null">
+				user_rank = #{userRank},
+			</if>
+			<if test="isSpecial != null">
+				is_special = #{isSpecial},
+			</if>
+			<if test="ecSalt != null and ecSalt != ''">
+				ec_salt = #{ecSalt},
+			</if>
+			<if test="salt != null and salt != ''">
+				salt = #{salt},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId},
+			</if>
+			<if test="flag != null">
+				flag = #{flag},
+			</if>
+			<if test="alias != null and alias != ''">
+				alias = #{alias},
+			</if>
+			<if test="msn != null and msn != ''">
+				msn = #{msn},
+			</if>
+			<if test="qq != null and qq != ''">
+				qq = #{qq},
+			</if>
+			<if test="officePhone != null and officePhone != ''">
+				office_phone = #{officePhone},
+			</if>
+			<if test="homePhone != null and homePhone != ''">
+				home_phone = #{homePhone},
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				mobile_phone = #{mobilePhone},
+			</if>
+			<if test="isValidated != null">
+				is_validated = #{isValidated},
+			</if>
+			<if test="validated != null">
+				validated = #{validated},
+			</if>
+			<if test="creditLine != null and creditLine != ''">
+				credit_line = #{creditLine},
+			</if>
+			<if test="passwdQuestion != null and passwdQuestion != ''">
+				passwd_question = #{passwdQuestion},
+			</if>
+			<if test="passwdAnswer != null and passwdAnswer != ''">
+				passwd_answer = #{passwdAnswer},
+			</if>
+			<if test="passwdWeixin != null and passwdWeixin != ''">
+				passwd_weixin = #{passwdWeixin},
+			</if>
+			<if test="isFenxiao != null">
+				is_fenxiao = #{isFenxiao},
+			</if>
+			<if test="realName != null and realName != ''">
+				real_name = #{realName},
+			</if>
+			<if test="card != null and card != ''">
+				card = #{card},
+			</if>
+			<if test="faceCard != null and faceCard != ''">
+				face_card = #{faceCard},
+			</if>
+			<if test="backCard != null and backCard != ''">
+				back_card = #{backCard},
+			</if>
+			<if test="country != null">
+				country = #{country},
+			</if>
+			<if test="province != null">
+				province = #{province},
+			</if>
+			<if test="city != null">
+				city = #{city},
+			</if>
+			<if test="district != null">
+				district = #{district},
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="mediauid != null and mediauid != ''">
+				mediaUID = #{mediauid},
+			</if>
+			<if test="mediaid != null">
+				mediaID = #{mediaid},
+			</if>
+			<if test="froms != null and froms != ''">
+				froms = #{froms},
+			</if>
+			<if test="headimg != null and headimg != ''">
+				headimg = #{headimg},
+			</if>
+		</set>
+		WHERE user_id = #{userId}
+	</update>
+
+	<update id="updateAll">
+		UPDATE yzy_users
+		<set>
+			aite_id = #{aiteId},
+			email = #{email},
+			user_name = #{userName},
+			password = #{password},
+			is_surplus_open = #{isSurplusOpen},
+			surplus_password = #{surplusPassword},
+			question = #{question},
+			answer = #{answer},
+			sex = #{sex},
+			birthday = #{birthday},
+			user_money = #{userMoney},
+			frozen_money = #{frozenMoney},
+			pay_points = #{payPoints},
+			rank_points = #{rankPoints},
+			address_id = #{addressId},
+			reg_time = #{regTime},
+			last_login = #{lastLogin},
+			last_time = #{lastTime},
+			last_ip = #{lastIp},
+			visit_count = #{visitCount},
+			user_rank = #{userRank},
+			is_special = #{isSpecial},
+			ec_salt = #{ecSalt},
+			salt = #{salt},
+			parent_id = #{parentId},
+			flag = #{flag},
+			alias = #{alias},
+			msn = #{msn},
+			qq = #{qq},
+			office_phone = #{officePhone},
+			home_phone = #{homePhone},
+			mobile_phone = #{mobilePhone},
+			is_validated = #{isValidated},
+			validated = #{validated},
+			credit_line = #{creditLine},
+			passwd_question = #{passwdQuestion},
+			passwd_answer = #{passwdAnswer},
+			passwd_weixin = #{passwdWeixin},
+			is_fenxiao = #{isFenxiao},
+			real_name = #{realName},
+			card = #{card},
+			face_card = #{faceCard},
+			back_card = #{backCard},
+			country = #{country},
+			province = #{province},
+			city = #{city},
+			district = #{district},
+			address = #{address},
+			status = #{status},
+			mediaUID = #{mediauid},
+			mediaID = #{mediaid},
+			froms = #{froms},
+			headimg = #{headimg},
+		</set>
+		WHERE user_id = #{userId}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Boolean">
+	DELETE FROM yzy_users
+			WHERE user_id = #{id}
+	</delete>
+
+</mapper>

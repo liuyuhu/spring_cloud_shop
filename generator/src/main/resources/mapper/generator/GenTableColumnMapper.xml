@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.generator.dao.GenTableColumnDao">
+
+    <resultMap id="ResultMap" type="com.github.generator.entity.GenTableColumn">
+		<id column="id" property="id" />
+		<result column="gen_table_id" property="genTableId" />
+		<result column="name" property="name" />
+		<result column="comments" property="comments" />
+		<result column="jdbc_type" property="jdbcType" />
+		<result column="java_type" property="javaType" />
+		<result column="java_field" property="javaField" />
+		<result column="is_pk" property="isPk" />
+		<result column="is_null" property="isNull" />
+		<result column="is_insert" property="isInsert" />
+		<result column="is_edit" property="isEdit" />
+		<result column="is_list" property="isList" />
+		<result column="is_query" property="isQuery" />
+		<result column="query_type" property="queryType" />
+		<result column="show_type" property="showType" />
+		<result column="dict_type" property="dictType" />
+		<result column="settings" property="settings" />
+		<result column="sort" property="sort" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="valid" property="valid" />
+  	</resultMap>
+
+	<sql id="Column_List">
+		id,
+		gen_table_id,
+		name,
+		comments,
+		jdbc_type,
+		java_type,
+		java_field,
+		is_pk,
+		is_null,
+		is_insert,
+		is_edit,
+		is_list,
+		is_query,
+		query_type,
+		show_type,
+		dict_type,
+		settings,
+		sort,
+		create_time,
+		update_time,
+		valid
+	</sql>
+	
+	<sql id="Column_List_T">
+		t.id,
+		t.gen_table_id,
+		t.name,
+		t.comments,
+		t.jdbc_type,
+		t.java_type,
+		t.java_field,
+		t.is_pk,
+		t.is_null,
+		t.is_insert,
+		t.is_edit,
+		t.is_list,
+		t.is_query,
+		t.query_type,
+		t.show_type,
+		t.dict_type,
+		t.settings,
+		t.sort,
+		t.create_time,
+		t.update_time,
+		t.valid
+	</sql>
+
+	<update id="deleteByGenTableId">
+		UPDATE gen_table_column SET
+		valid = '1'
+		WHERE gen_table_id = #{deleteByGenTableId}
+	</update>
+
+</mapper>
